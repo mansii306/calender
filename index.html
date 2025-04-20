@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #body{
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+        }
+        .container{
+            background-color: white;
+            width:450px;
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            border: 5px solid black;
+            border-radius: 800px ;
+            
+        }
+        span{
+            font-size: 45px;
+            font-weight: bold;
+            padding: 10px;
+            margin: 5px;
+            position: relative ;
+            top: 150px;
+            left: 150px;
+        }
+        .date{
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px;
+            margin: 5px;
+            position: relative;
+            top: 250px;
+            left: -190px;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="container">
+         <!-- For Time -->
+        <span id="HH">HH</span><span>:</span><span id="MM">MM</span><span>:</span><span id="SS">SS</span><span id="AMPM"></span><span id="ampm"></span>
+         <!-- For Date -->
+        <span id="Day" class="date">Day</span><span class="date">/</span><span id="Month"class="date">Month</span><span class="date">/</span><span id="Year"class="date">Year</span>
+
+    </div>
+    <!-- <script>
+        // // Date Methods
+        // let Time= new Date();
+
+        // console.log(Time);
+        // console.log(Time.getFullYear());  // 1970-9999
+        // console.log(Time.getMonth());        // 0-11
+        // console.log(Time.getDate());         // 1-31
+        // console.log(Time.getDay());          // 0-6
+        // console.log(Time.getHours());        // 0-23
+
+        // // Math methods
+        // //Objects in JS are key-value pairs, similar to dictionaries in Python
+        // //Objects are mutable, meaning we can change the values of the properties
+        // //Objects are unordered, meaning the order of the properties is not guaranteed
+        // //Objects can contain functions, which are called methods in objects
+        // let x={
+        //     name: "John",
+        //     Rollno: 30,
+        //     city: "New York",
+        //     //function in objects, is impossible to use in Dictionary
+        //     greet: function() {
+        //         console.log("Hello ");
+        //         // Anonymous function
+        //         //cannot call , executed via callback -> function inside a function
+        //     }
+        // };
+
+        // console.log(x)
+
+        // x.name="Doe"; // change the value of name property
+        // console.log(x);
+
+
+        // Bom -> Browser Object Model
+        // The BOM is a representation of the browser window and its components, such as the address bar, history, and navigator.
+        // It allows JavaScript to interact with the browser and perform actions such as opening new windows, navigating to different URLs, and accessing the user's location.
+        // The BOM is not standardized, meaning that different browsers may implement it differently.
+
+        // Dom -> Document Object Model
+        // The DOM is a representation of the HTML document as a tree structure, where each element is a node in the tree.
+        // It allows JavaScript to manipulate the content and structure of the HTML document, such as adding or removing elements, changing styles, and responding to user events.
+        // The DOM is standardized, meaning that all browsers implement it in the same way.
+
+
+        
+
+    </script> -->
+    <script>
+        function clock(){
+            let Time= new Date();
+            let hours= Time.getHours();
+            let minutes= Time.getMinutes();
+            let seconds= Time.getSeconds();
+            let AMPM;
+
+            if(hours>=12){
+                AMPM= "PM";
+            }else{
+                AMPM= "AM";
+            }
+            if(hours>12){
+                hours= hours-12;
+            }
+
+            document.getElementById("HH").innerHTML= hours.toString().padStart(2, '0'); // padStart is used to add leading zeros to the hours
+            document.getElementById("MM").innerHTML= minutes.toString().padStart(2, '0'); // padStart is used to add leading zeros to the minutes
+            document.getElementById("SS").innerHTML= seconds.toString().padStart(2,"0"); // padStart is used to add leading zeros to the seconds
+            document.getElementById("ampm").innerHTML= AMPM;
+
+        }
+        clock(); // Call the clock function once to display the time immediately
+        setInterval(clock, 1000); // 1000ms = 1s
+
+        function date(){
+            let date= new Date();
+            let day= date.getDate();
+            let month= date.getMonth()+1; // Months are zero-based, so we add 1 to get the correct month number
+            let year= date.getFullYear();
+
+            document.getElementById("Day").innerHTML= day.toString().padStart(2, '0');
+            document.getElementById("Month").innerHTML= month.toString().padStart(2, '0');
+            document.getElementById("Year").innerHTML= year;
+
+        }
+        date(); // Call the date function once to display the date immediately
+        setInterval(date, 1000); // 1000ms = 1s
+        // setInterval is a method that calls a function at specified intervals (in milliseconds). In this case, it calls the clock function every 1000 milliseconds (1 second).
+
+
+        // Syntax Error
+        // Reference Error
+        // Logical Error
+        const d=new Date();
+        d.setFullYear(2025); // setFullYear() method sets the year of a date object to a specified value.
+        console.log(d.getFullYear()); // 2025
+
+        // Maths Methods
+        console.log(Math.E); // 2.718281828459045
+        console.log(Math.PI); // 3.141592653589793
+        console.log(Math.SQRT2); // 1.4142135623730951
+        console.log(Math.SQRT1_2); // 0.7071067811865476
+        console.log(Math.LN2); // 0.6931471805599453
+        console.log(Math.LN10); // 2.302585092994046
+        console.log(Math.LOG2E); // 1.4426950408889634
+        console.log(Math.LOG10E); // 0.4342944819032518
+        console.log(Math.abs(-5)); // 5 -> Absolute value of a number
+        console.log(Math.sign(-5)); // -1 -> Returns -1 if the number is negative, 0 if the number is zero, and 1 if the number is positive.
+        console.log(Math.pow(2, 3)); // 8 -> Returns the value of a base raised to the power of an exponent.
+        console.log(Math.sqrt(16)); // 4 -> Returns the square root of a number.
+        console.log(Math.cbrt(27)); // 3 -> Returns the cube root of a number.
+        console.log(Math.max(1, 2, 3, 4, 5)); // 5 -> Returns the largest of zero or more numbers.
+        console.log(Math.min(1, 2, 3, 4, 5)); // 1 -> Returns the smallest of zero or more numbers.
+
+
+
+
+
+
+    </script>
+</body>
+</html>
